@@ -1,27 +1,40 @@
 import React, { useState, useEffect } from 'react';
 import { Coin } from './Coin';
 
-export const Game = () => {
+export const Game = ({updateCoins, ...props}: any) => {
   const [coins, setCoins] = useState<any[]>([]);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const randomX = Math.random() * 10 - 5;
-      const randomZ = Math.random() * 10 - 5;
+      const randomX = Math.random() * 60 - 40;
+      const randomZ = Math.random() * 60 - 40;
 
-      setCoins(prevCoins => [
-        ...prevCoins,
-        { x: randomX, z: randomZ }
-      ]);
-    }, 5000);
+      const newCoin = {
+        id: Date.now() + Math.random(),
+        x: randomX,
+        z: randomZ,
+      };
+
+      setCoins(prevCoins => [...prevCoins, newCoin]);
+    }, 1000);
 
     return () => clearInterval(interval);
   }, []);
 
+  const removeCoin = (id: number) => {
+    setCoins(prevCoins => prevCoins.filter(coin => coin.id !== id));
+    updateCoins(1);
+  };
+
   return (
     <>
-      {coins.map((coin, index) => (
-        <Coin key={index} x={coin.x} z={coin.z} />
+      {coins.map((coin) => (
+        <Coin
+          key={coin.id} 
+          x={coin.x}
+          z={coin.z}
+          onClick={() => removeCoin(coin.id)}
+        />
       ))}
     </>
   );

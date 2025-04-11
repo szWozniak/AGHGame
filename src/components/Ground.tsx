@@ -11,10 +11,10 @@ export function Ground() {
 
 
   return (
-    <mesh receiveShadow position={[0, -0.5, 0]}>
+    <mesh receiveShadow position={[0, -2.5, 0]}>
       <boxGeometry args={[1000, 1, 1000]} />
       <meshStandardMaterial
-        color={'#91BD59'}
+        color={'#81DD59'}
         map={groundTexture}
         //normalMap={normalMap} 
         //normalScale={new THREE.Vector2(10, 3)}
