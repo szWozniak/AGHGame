@@ -3,10 +3,9 @@ import { OrbitControls } from '@react-three/drei'
 import './App.css'
 import { Ground } from './components/Ground'
 import { Sky } from '@react-three/drei'
-import { Coin } from './components/Coin'
 import { Game } from './components/Game'
 import * as THREE from 'three';
-import { Block } from './components/Block'
+import { Player } from './components/Player'
 import { Map } from './components/Map'
 import { useState } from 'react'
 
@@ -20,6 +19,7 @@ function Fog() {
 
 function App() {
   const [coins, setCoins] = useState<number>(0)
+  const [nextUpdate, setNextUpdate] = useState(10);
 
   const updateCoins = (delta: number) => {
     setCoins(prev => prev + delta)
@@ -33,15 +33,20 @@ function App() {
         </div>
         <div>
           💰 Złoto: <b>{coins}</b>
+          <br />
+          Następne ulepszenie:<br /><br />
+          🌳 <b>Drzewo</b>: <b>{coins}</b>/{nextUpdate}<br />
         </div>
         <div className="footer">
           Made with ❤️ by:<br />
           Szymon Woźniak & Mikołaj Pajor
         </div>
       </div>
+      <div className="crosshair"></div>
+
       <Canvas
         shadows
-        camera={{ position: [3, 2, 5], fov: 50 }}
+        camera={{ position: [0, 4, 0], fov: 70 }}
       >
         <Sky
           distance={1000}
@@ -64,13 +69,7 @@ function App() {
 
         <Ground />
         <Fog />
-        <OrbitControls
-          minPolarAngle={Math.PI / 4}
-          maxPolarAngle={Math.PI / 2.1}
-          minDistance={40}
-          maxDistance={60}
-          zoomSpeed={2}
-        />
+        <Player />
       </Canvas>
     </>
   )

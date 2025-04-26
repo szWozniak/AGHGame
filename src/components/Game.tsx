@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Coin } from './Coin';
 
-export const Game = ({updateCoins, ...props}: any) => {
+export const Game = ({ updateCoins, ...props }: any) => {
   const [coins, setCoins] = useState<any[]>([]);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const randomX = Math.random() * 60 - 40;
-      const randomZ = Math.random() * 60 - 40;
+      const angle = Math.random() * Math.PI * 2;
+      const radius = Math.random() * 80;
+      const randomX = radius * Math.cos(angle);
+      const randomZ = radius * Math.sin(angle);
 
       const newCoin = {
         id: Date.now() + Math.random(),
@@ -30,7 +32,7 @@ export const Game = ({updateCoins, ...props}: any) => {
     <>
       {coins.map((coin) => (
         <Coin
-          key={coin.id} 
+          key={coin.id}
           x={coin.x}
           z={coin.z}
           onClick={() => removeCoin(coin.id)}

@@ -49,7 +49,7 @@ export function Coin({ x = 0, y = -0.5, z = 0, size = 1, onClick }: CoinProps) {
       onPointerOver={handlePointerOver}
       onPointerOut={handlePointerOut}
     >
-      <dodecahedronGeometry args={[size, 0]} />
+      <sphereGeometry args={[size, 32, 32]} />
       <meshStandardMaterial metalness={5} roughness={1} map={grassTexture} />
     </mesh>
   );
