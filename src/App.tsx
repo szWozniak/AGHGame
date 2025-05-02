@@ -8,6 +8,8 @@ import * as THREE from 'three';
 import { Player } from './components/Player'
 import { Map } from './components/Map'
 import { useState } from 'react'
+import { GameProvider } from './contexts/GameContext'
+import { Sidebar } from './components/Sidebar'
 
 
 function Fog() {
@@ -18,30 +20,9 @@ function Fog() {
 }
 
 function App() {
-  const [coins, setCoins] = useState<number>(0)
-  const [nextUpdate, setNextUpdate] = useState(10);
-
-  const updateCoins = (delta: number) => {
-    setCoins(prev => prev + delta)
-  }
-
   return (
-    <>
-      <div className="gui">
-        <div className="title">
-          MineClicker
-        </div>
-        <div>
-          💰 Złoto: <b>{coins}</b>
-          <br />
-          Następne ulepszenie:<br /><br />
-          🌳 <b>Drzewo</b>: <b>{coins}</b>/{nextUpdate}<br />
-        </div>
-        <div className="footer">
-          Made with ❤️ by:<br />
-          Szymon Woźniak & Mikołaj Pajor
-        </div>
-      </div>
+    <GameProvider>
+      <Sidebar />
       <div className="crosshair"></div>
 
       <Canvas
@@ -64,14 +45,14 @@ function App() {
           shadow-mapSize-width={1024}
           shadow-mapSize-height={1024}
         />
-        <Game updateCoins={updateCoins} />
+        <Game />
         <Map />
 
         <Ground />
         <Fog />
         <Player />
       </Canvas>
-    </>
+    </GameProvider>
   )
 }
 

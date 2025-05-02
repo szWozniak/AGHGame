@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Coin } from './Coin';
+import { useGame } from '../contexts/GameContext';
 
-export const Game = ({ updateCoins, ...props }: any) => {
+export const Game = ({ ...props }: any) => {
   const [coins, setCoins] = useState<any[]>([]);
+
+  const { updateCoins } = useGame();
 
   useEffect(() => {
     const interval = setInterval(() => {

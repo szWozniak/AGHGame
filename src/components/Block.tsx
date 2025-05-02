@@ -1,6 +1,7 @@
 import { useLoader } from '@react-three/fiber';
 import { TextureLoader } from 'three';
 import * as THREE from 'three';
+import { useGame } from '../contexts/GameContext';
 
 const textures: { [key: string]: { top: string, side: string, colorTop: string, colorSide: string } } = {
   "grass": {
@@ -30,6 +31,8 @@ const textures: { [key: string]: { top: string, side: string, colorTop: string, 
 };
 
 export function Block({ x, y, z, type }: { x: number, y: number, z: number, type: string }) {
+  const { addTree } = useGame()
+
   const top = textures[type].top;
   const side = textures[type].side;
   const colorTop = textures[type].colorTop;
@@ -45,7 +48,7 @@ export function Block({ x, y, z, type }: { x: number, y: number, z: number, type
 
   const handleClick = () => {
     if (type === "crafting") {
-      console.log("Right-clicked on the crafting block");
+      addTree()
     }
   };
 
