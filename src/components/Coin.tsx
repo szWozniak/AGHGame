@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { useFrame, useLoader } from '@react-three/fiber';
 import { Mesh, TextureLoader } from 'three';
 import * as THREE from 'three';
+import { Billboard, Text } from '@react-three/drei';
 
 interface CoinProps {
   x?: number;
@@ -40,17 +41,34 @@ export function Coin({ x = 0, y = -0.5, z = 0, size = 1, onClick }: CoinProps) {
     document.body.style.cursor = 'auto';
   };
 
+  const trueSize = 0.5+size*0.1
+
   return (
-    <mesh
-      ref={meshRef}
-      position={[x, y, z]}
-      castShadow
-      onClick={onClick}
-      onPointerOver={handlePointerOver}
-      onPointerOut={handlePointerOut}
-    >
-      <sphereGeometry args={[size, 32, 32]} />
-      <meshStandardMaterial metalness={5} roughness={1} map={grassTexture} />
-    </mesh>
+    <group>
+      <mesh
+        ref={meshRef}
+        position={[x, y, z]}
+        castShadow
+        onClick={onClick}
+        onPointerOver={handlePointerOver}
+        onPointerOut={handlePointerOut}
+      >
+        <sphereGeometry args={[trueSize, 32, 32]} />
+        <meshStandardMaterial metalness={5} roughness={1} map={grassTexture} />
+      </mesh>
+
+      <Billboard position={[x, y + trueSize + 0.8, z]} follow lockX={false} lockY={false} lockZ={false}>
+        <Text
+          fontSize={Math.min(trueSize, 1.5)}
+          color="white"
+          outlineColor="black"
+          outlineWidth={0.07}
+          anchorX="center"
+          anchorY="middle"
+        >
+          {size}
+        </Text>
+      </Billboard>
+    </group>
   );
 }
