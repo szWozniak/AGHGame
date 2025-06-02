@@ -1,54 +1,38 @@
-# React + TypeScript + Vite
+# AGH Game - Tworzenie Gier Komputerowych
+# MineClicker v. 1.0.0
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Opis gry 
 
-Currently, two official plugins are available:
+Gra jest osadzona w świecie Minecraft.
+Celem gry jest uratowanie opustoszałej planety poprzez wybudowanie lasu.
+Przywróci to atmosferę i warunki pozwalające na przeżycie gatunku ludzkiego.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Na szczęście gracza, dookoła spadają odłamki złota, jak przystało na postapokaliptyczny świat...
+Za zebrane złoto można zakupić drzewa, które są pierwszym krokiem na drodze terraformacji.
 
-## Expanding the ESLint configuration
+## Jak grać?
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Co chwilkę na planszy pojawiają się odłamki złota.
+Odłamki złota łączą się w większe fragmenty, jeżeli znajdują się blisko siebie (clusteryzacja)
+Aby zebrać fragment złota, należy na niego kliknąć LPM.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+Aby kupić drzewo, należy kliknąć w crafting table.
+Pierwsze drzewo kosztuje 5 złota, każde kolejne o 2 złota więcej.
+Zakupione drzewo pojawia się w losowym miejscu na mapie.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Ilość aktualnie posiadanego złota oraz koszt drzewa można znaleźć po prawej stronie (scoreboard)
+
+## Instrukcja uruchomienia
+
+Gra jest stworzona korzystając z środowiska uruchomieniowego VITE.
+Aby ją uruchomić należy wpisać poniższe komendy
 
 ```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+npm install
+npm run dev
 ```
+
+## Wygląd gry
+
+Poniżej znajduje się zrzut ekranu, który pokazuje wygląd gry.
+![image](https://github.com/user-attachments/assets/6ffc3add-d789-442d-92e2-26d58ade1c49)
